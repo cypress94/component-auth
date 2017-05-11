@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:title="#{title}"></title>
+    <meta charset="UTF-8"/>
+
+    <link rel="stylesheet" href="../static/assets/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/assets/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../static/assets/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../static/css/main.css"/>
+</head>
+<body>
+<div class="wrapper">
+
+    <form class="form-horizontal auth-data"
+          th:action="@{getIndex}" method="get">
+        <h2 class="text-center" th:text="#{auth.userinfo}"></h2>
+
+        <h3>Успешная регистрация</h3>
+        <h3>Ваше имя:       <span th:text="${name}"/></h3>
+        <h3>Ваш e-mail:   <span th:text="${mail}"/></h3>
+        <h3>ClientId:       <span th:text="${clientId}"/></h3>
+        <h3>ClientSecret:   <span th:text="${clientSecret}"/></h3>
+
+        <div class="text-center">
+            <input class="btn btn-default" type="submit" th:value="#{auth.logout}"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>
