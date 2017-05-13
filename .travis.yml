@@ -6,9 +6,10 @@ services:
   - docker
 
 install:
-  - docker run -d --name tomcat tomcat
-  - docker run --name some-postgres -e POSTGRES_HOST=localhost -e POSTGRES_PORT=5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=kurs_auth -d postgres:9.3
-  - mvn compile
+  - docker run --name some-postgres -h localhost -e POSTGRES_HOST=127.0.0.1 -e POSTGRES_PORT=5432 -e POSTGRES_USER=postgres -e  POSTGRES_PASSWORD=postgres -e POSTGRES_DB=kurs_auth -d postgres:9.3
+  - docker run --link some-postgres:postgres -d --name tomcat tomcat
+  - mvn package 
+  - cp target/component-auth-1.0.0-SNAPSHOT.jar src/main/docker
   - docker build -t my_app_component_auth src/main/docker
 
 script:
